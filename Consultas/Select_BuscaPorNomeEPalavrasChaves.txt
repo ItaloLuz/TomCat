@@ -1,0 +1,3 @@
+SELECT	codigo, nome, keyword_1, keyword_2, keyword_3, keyword_4, keyword_5
+FROM	Restaurantes
+WHERE	nome LIKE '%restaurante%' OR keyword_1 LIKE '%restaurante%' OR keyword_2 LIKE '%restaurante%' OR keyword_3 LIKE '%restaurante%' OR keyword_4 LIKE '%restaurante%' OR keyword_5 LIKE '%restaurante%';
