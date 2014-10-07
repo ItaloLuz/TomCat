@@ -1,3 +1,0 @@
-SELECT	nome, IFNULL(bairro, 'Outros')
-FROM	Restaurantes
-ORDER	BY bairro;
