@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoMySQL {
-	public static String status = "Não conectou...";
+	public static String status = "Nï¿½o conectou...";
 	
 	public ConexaoMySQL() {}
 	
@@ -16,7 +16,7 @@ public class ConexaoMySQL {
 			String driverName = "com.mysql.jdbc.Driver"; 
 			Class.forName(driverName);
 			  
-			String url = "jdbc:mysql://localhost/app"; //jdbc:mysql://php-italoluz.rhcloud.com/php 
+			String url = "jdbc:mysql://php-italoluz.rhcloud.com:3306/app"; //jdbc:mysql://php-italoluz.rhcloud.com/php 
 			String username = "root"; //adminVWdn31p
 			String password = ""; //hgmygUv9xHB6 
 			
@@ -25,7 +25,7 @@ public class ConexaoMySQL {
 			if (connection != null) 
 				status = ("STATUS--->Conectado com sucesso!");
 			else 
-				status = ("STATUS--->Não foi possivel realizar conexão"); 
+				status = ("STATUS--->Nï¿½o foi possivel realizar conexï¿½o"); 
 			
 			return connection;
 		}

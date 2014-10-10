@@ -11,6 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import model.dto.InformacoesRestauranteDto;
+import model.dto.PratoDto;
+import model.dto.RestauranteDto;
+
 import org.jboss.resteasy.annotations.providers.jaxb.json.BadgerFish;
 
 @Path("/rest-service")
@@ -18,22 +22,39 @@ public class RESTEasyHelloWorldService {
 
 	@BadgerFish
 	@GET
-	@Path("/rest-path")
+	@Path("/buscar-restaurantes")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Teste> responseMsg( @DefaultValue("pathParameter")  @PathParam("pathParameter") String pathParameter,
-			@DefaultValue("Nothing to say") @QueryParam("queryParameter") String queryParameter) {
-
-		List<String> list = new ArrayList<String>();
-		list.add(pathParameter);
-		list.add(queryParameter);
+	public List<RestauranteDto> buscarRestaurantes() {
+		List<RestauranteDto> restaurantes = new ArrayList<RestauranteDto>();
 		
-		List<Teste> listTeste = new ArrayList<Teste>();
-		
-		listTeste.add(new Teste(pathParameter, queryParameter));
-		listTeste.add(new Teste(pathParameter+"1", queryParameter+"1"));
-		listTeste.add(new Teste(pathParameter+"2", queryParameter+"2"));
+		restaurantes.add(new RestauranteDto(1, "Camaroes", "/images/chopp-brahma-express.png"));
 
-		return listTeste;//Response.status(200).entity(list).build();
+		return restaurantes;
+	}
+
+	@BadgerFish
+	@GET
+	@Path("/buscar-infos/{idRestaurante}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public InformacoesRestauranteDto findInfoByRetaurante( @DefaultValue("0")  @PathParam("idRestaurante") String idRestaurante) {
+		
+		System.out.println(idRestaurante);
+
+		List<RestauranteDto> restaurantes = new ArrayList<RestauranteDto>();
+		
+		List<InformacoesRestauranteDto> infos = new ArrayList<InformacoesRestauranteDto>();
+		
+		RestauranteDto restaurante = new RestauranteDto(1, "Camaroes", "/images/chopp-brahma-express.png");
+		
+		List<PratoDto> pratos = new ArrayList<PratoDto>();
+		pratos.add(new PratoDto(restaurante, "Hamburguer", "/images/chopp-brahma-express.png"));
+		pratos.add(new PratoDto(restaurante, "Pastel", "/images/chopp-brahma-express.png"));
+		
+		return new InformacoesRestauranteDto(restaurante, pratos, "(84) 8888-9999", "Rua de teste", "Testando descricaoajas diufabsiuf asbduyfb asuidbf uasibdf ");
+		
+//		infos.add(info);
+//
+//		return infos;
 	}
 
 }
