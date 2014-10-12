@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import model.dto.BairroDto;
 import model.dto.InformacoesRestauranteDto;
 import model.dto.PratoDto;
 import model.dto.RestauranteDto;
@@ -55,6 +56,21 @@ public class RESTEasyHelloWorldService {
 //		infos.add(info);
 //
 //		return infos;
+	}
+
+	@BadgerFish
+	@GET
+	@Path("/bairros")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<BairroDto> findBairros() {
+		List<BairroDto> bairros = new ArrayList<BairroDto>();
+		
+		bairros.add(new BairroDto("Petropolis", "/images/chopp-brahma-express.png"));
+		bairros.add(new BairroDto("Tirol", "/images/chopp-brahma-express.png"));
+		bairros.add(new BairroDto("Lagoa Nova", "/images/chopp-brahma-express.png"));
+		bairros.add(new BairroDto("Cidade Verde", "/images/chopp-brahma-express.png"));
+		
+		return bairros;
 	}
 
 }
