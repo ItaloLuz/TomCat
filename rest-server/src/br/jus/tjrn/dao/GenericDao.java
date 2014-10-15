@@ -28,9 +28,9 @@ public abstract class GenericDao<T> {
 	public EntityManager getEntityManager() {
 		Map<String, String> persistenceMap = null;
 		try {
-			String pathProperties = dataSource.getPersistenceProperties();			
-			persistenceMap = PropertiesUtils.getDados(pathProperties);
-		} catch (IOException e) {
+			String pathProperties = dataSource.getPersistenceProperties();
+			//persistenceMap = PropertiesUtils.getDados(pathProperties);			
+		} catch (Exception e) {
 			close();
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public abstract class GenericDao<T> {
 			entityManagerFactorys.put(
 					dataSource, 
 					Persistence.createEntityManagerFactory( 
-				    		dataSource.getPersistenceUnit(), persistenceMap 
+				    		dataSource.getPersistenceUnit() //, persistenceMap 
 				    	)
 				);
 	    }

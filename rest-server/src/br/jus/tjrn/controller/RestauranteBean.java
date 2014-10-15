@@ -22,8 +22,8 @@ public class RestauranteBean extends AbstractRestauranteBean implements Serializ
     }
     
     @Override
-    public List<Object[]> getRestaurantes() {
-        List<Object[]> restaurantes = new ArrayList<Object[]>();        
+    public List<Restaurante> getRestaurantes() {
+        List<Restaurante> restaurantes = new ArrayList<Restaurante>();        
         try {
             restaurantes = listarRestaurantes();
         } catch (SQLException e) {
@@ -32,9 +32,9 @@ public class RestauranteBean extends AbstractRestauranteBean implements Serializ
         return restaurantes;
     }
     
-    public List<Object[]> listarRestaurantes() throws SQLException {
+    public List<Restaurante> listarRestaurantes() throws SQLException {
         RestauranteDao restaurante = new RestauranteDao();
-        List<Object[]> restaurantes = new ArrayList<Object[]>();
+        List<Restaurante> restaurantes = new ArrayList<Restaurante>();
         try {
             restaurantes = restaurante.getRestaurantes(); 
         } finally {
@@ -44,25 +44,69 @@ public class RestauranteBean extends AbstractRestauranteBean implements Serializ
     }
     
     @Override
-    public Restaurante findByIdRestaurante(Integer id) {
+    public Restaurante getRestaurantesPorId(Integer id) {
     	Restaurante restaurante = new Restaurante();        
         try {
-        	restaurante = findRestaurante(id);
+        	restaurante = listarRestaurantesPorId(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }            
         return restaurante;
     }
     
-	public Restaurante findRestaurante(Integer id) throws SQLException {
+	public Restaurante listarRestaurantesPorId(Integer id) throws SQLException {
 		Restaurante restaurante = new Restaurante();
 		RestauranteDao restaurantedao = new RestauranteDao();
 		try {
-			restaurante = restaurantedao.findByIdRestaurante(id);
+			restaurante = restaurantedao.getRestaurantesPorId(id);
 		} finally {
 			restaurantedao.close();
 		}
 		return restaurante;
-	}    
+	}
+
+	@Override
+    public List<Restaurante> getRestaurantesPorBairro() {
+        List<Restaurante> restaurantes = new ArrayList<Restaurante>();        
+        try {
+            restaurantes = listarRestaurantesPorBairro();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }            
+        return restaurantes;
+    }
+    
+    public List<Restaurante> listarRestaurantesPorBairro() throws SQLException {
+        RestauranteDao restaurante = new RestauranteDao();
+        List<Restaurante> restaurantes = new ArrayList<Restaurante>();
+        try {
+            restaurantes = restaurante.getRestaurantesPorBairro(); 
+        } finally {
+            restaurante.close();
+        }
+        return restaurantes;
+    }
+    
+	@Override
+    public List<Restaurante> getRestaurantesPorNome(String nome) {
+        List<Restaurante> restaurantes = new ArrayList<Restaurante>();        
+        try {
+            restaurantes = listarRestaurantesPorNome(nome);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }            
+        return restaurantes;
+    }
+    
+    public List<Restaurante> listarRestaurantesPorNome(String nome) throws SQLException {
+        RestauranteDao restaurante = new RestauranteDao();
+        List<Restaurante> restaurantes = new ArrayList<Restaurante>();
+        try {
+            restaurantes = restaurante.getRestaurantesPorNome(nome); 
+        } finally {
+            restaurante.close();
+        }
+        return restaurantes;
+    }        
 
 }

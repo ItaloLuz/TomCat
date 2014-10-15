@@ -35,6 +35,12 @@ public class Restaurante implements Serializable  {
         this.id = id;
         this.nome = nome;
     }
+    
+    public Restaurante(Integer id, String nome, String bairro) {
+        this.id = id;
+        this.nome = nome;
+        this.bairro = bairro;
+    }    
 
     public Restaurante() {
         

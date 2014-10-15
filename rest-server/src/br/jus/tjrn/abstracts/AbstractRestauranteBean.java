@@ -6,8 +6,12 @@ import br.jus.tjrn.model.Restaurante;
 
 public abstract class AbstractRestauranteBean extends AbstractBean {
 
-    public abstract List<Object[]> getRestaurantes();
+    public abstract List<Restaurante> getRestaurantes();
     
-    public abstract Restaurante findByIdRestaurante(Integer id);
+    public abstract List<Restaurante> getRestaurantesPorBairro();
+    
+    public abstract List<Restaurante> getRestaurantesPorNome(String nome);
+    
+    public abstract Restaurante getRestaurantesPorId(Integer id);
 
 }
