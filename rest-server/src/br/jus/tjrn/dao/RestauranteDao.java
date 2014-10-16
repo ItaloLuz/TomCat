@@ -24,24 +24,7 @@ public class RestauranteDao extends GenericDao<Restaurante> {
     
     public List<Restaurante> getRestaurantes() throws SQLException {
 		List<Restaurante> restaurantes = new ArrayList<Restaurante>();		    	
-        String sql = " select id, nome from tb_restaurante order by nome ";
-        SQLQuery query = getSession().createSQLQuery(sql);
-        ScrollableResults resultSet=query.scroll();
-        
-        if (resultSet.first()) {
-        	do {
-                restaurantes.add(new Restaurante((Integer) resultSet.get(0), (String) resultSet.get(1)));
-            }
-            while ( resultSet.next() );        	
-        }
-        
-        resultSet.close();
-        return restaurantes;
-    }
-    
-    public List<Restaurante> getRestaurantesPorBairro() throws SQLException {
-		List<Restaurante> restaurantes = new ArrayList<Restaurante>();		    	
-        String sql = " select id, nome, bairro from tb_restaurante order by bairro, nome ";
+        String sql = " select id, nome, caminho_imagem_1 from tb_restaurante order by nome ";
         SQLQuery query = getSession().createSQLQuery(sql);
         ScrollableResults resultSet=query.scroll();
         
@@ -56,9 +39,26 @@ public class RestauranteDao extends GenericDao<Restaurante> {
         return restaurantes;
     }
     
+    public List<Restaurante> getRestaurantesPorBairro() throws SQLException {
+		List<Restaurante> restaurantes = new ArrayList<Restaurante>();		    	
+        String sql = " select id, nome, bairro, caminho_imagem_1 from tb_restaurante order by bairro, nome ";
+        SQLQuery query = getSession().createSQLQuery(sql);
+        ScrollableResults resultSet=query.scroll();
+        
+        if (resultSet.first()) {
+        	do {
+                restaurantes.add(new Restaurante((Integer) resultSet.get(0), (String) resultSet.get(1), (String) resultSet.get(2), (String) resultSet.get(3)));
+            }
+            while ( resultSet.next() );        	
+        }
+        
+        resultSet.close();
+        return restaurantes;
+    }
+    
     public List<Restaurante> getRestaurantesPorNome(String nome) throws SQLException {
 		List<Restaurante> restaurantes = new ArrayList<Restaurante>();		    	
-        String sql = " select id, nome from tb_restaurante where nome like '%"+nome+"%' order by nome ";
+        String sql = " select id, nome, caminho_imagem_1 from tb_restaurante where nome like '%"+nome+"%' order by nome ";
         SQLQuery query = getSession().createSQLQuery(sql);
         //query.setString(0,"'%"+nome+"%'");
         //query.setParameter("valor", "%'"+nome+"'%");
@@ -66,7 +66,7 @@ public class RestauranteDao extends GenericDao<Restaurante> {
         
         if (resultSet.first()) {
         	do {
-                restaurantes.add(new Restaurante((Integer) resultSet.get(0), (String) resultSet.get(1)));
+                restaurantes.add(new Restaurante((Integer) resultSet.get(0), (String) resultSet.get(1), (String) resultSet.get(2)));
             }
             while ( resultSet.next() );        	
         }
@@ -78,7 +78,9 @@ public class RestauranteDao extends GenericDao<Restaurante> {
     public Restaurante getRestaurantesPorId(Integer id) throws SQLException {
     	Restaurante restaurante = new Restaurante();
         String sql =    " select id, nome, telefone, bairro, endereco, descricao, horario_funcionamento, " +
-                        " quantidade_Pessoas, preco, cartoes, facebook, twitter, email, site " +
+                        " quantidade_Pessoas, preco, cartoes, facebook, twitter, email, site, " +
+                        " caminho_imagem_1, caminho_imagem_2, caminho_imagem_3, caminho_imagem_4, caminho_imagem_5, caminho_imagem_6, caminho_imagem_7, caminho_imagem_8, caminho_imagem_9, caminho_imagem_10, " + 
+                        " nome_prato_1, nome_prato_2, nome_prato_3, nome_prato_4, nome_prato_5, nome_prato_6, nome_prato_7, nome_prato_8, nome_prato_9, nome_prato_10 " +
                         " from tb_restaurante " +
                         " where id = ? " +
                         " order by nome; ";
@@ -101,6 +103,29 @@ public class RestauranteDao extends GenericDao<Restaurante> {
             	restaurante.setTwitter((String) resultSet.get(11));
             	restaurante.setEmail((String) resultSet.get(12));
             	restaurante.setSite((String) resultSet.get(13));
+            	
+            	restaurante.setCaminho_imagem_1((String) resultSet.get(14));
+            	restaurante.setCaminho_imagem_2((String) resultSet.get(15));
+            	restaurante.setCaminho_imagem_3((String) resultSet.get(16));
+            	restaurante.setCaminho_imagem_4((String) resultSet.get(17));
+            	restaurante.setCaminho_imagem_5((String) resultSet.get(18));
+            	restaurante.setCaminho_imagem_6((String) resultSet.get(19));
+            	restaurante.setCaminho_imagem_7((String) resultSet.get(20));
+            	restaurante.setCaminho_imagem_8((String) resultSet.get(21));
+            	restaurante.setCaminho_imagem_9((String) resultSet.get(22));
+            	restaurante.setCaminho_imagem_10((String) resultSet.get(23));
+            	
+            	restaurante.setNome_prato_1((String) resultSet.get(24));
+            	restaurante.setNome_prato_2((String) resultSet.get(25));
+            	restaurante.setNome_prato_3((String) resultSet.get(26));
+            	restaurante.setNome_prato_4((String) resultSet.get(27));
+            	restaurante.setNome_prato_5((String) resultSet.get(28));
+            	restaurante.setNome_prato_6((String) resultSet.get(29));
+            	restaurante.setNome_prato_7((String) resultSet.get(30));
+            	restaurante.setNome_prato_8((String) resultSet.get(31));
+            	restaurante.setNome_prato_9((String) resultSet.get(32));
+            	restaurante.setNome_prato_10((String) resultSet.get(33));
+            	
         }        
         resultSet.close();
         return restaurante;
