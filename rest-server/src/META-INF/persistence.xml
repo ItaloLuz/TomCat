@@ -8,9 +8,9 @@
         <properties>            
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
             
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.7.134.2:3306/guiacardapio?autoReconnect=true" />
-			<property name="javax.persistence.jdbc.user" value="admindTdENs7" />
-			<property name="javax.persistence.jdbc.password" value="wCpi68G-Lt_V" />			 
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/app?autoReconnect=true" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />			 
 			<!-- 	 
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/guiacardapio?autoReconnect=true" />
 			<property name="javax.persistence.jdbc.user" value="root" />
