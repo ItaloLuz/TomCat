@@ -50,6 +50,8 @@ public class Restaurante implements Serializable  {
     private String nome_prato_8;
     private String nome_prato_9;
     private String nome_prato_10;
+    private String latitude;
+    private String longitude;
     
     public Restaurante() {
         
@@ -382,6 +384,24 @@ public class Restaurante implements Serializable  {
 
 	public void setNome_prato_10(String nome_prato_10) {
 		this.nome_prato_10 = nome_prato_10;
+	}
+
+	@Column(name = "latitude")
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	@Column(name = "longitude")
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
 }
